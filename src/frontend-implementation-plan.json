@@ -1,0 +1,130 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Replace Internet Identity UI flows with direct email/password auth (frontend-only)",
+  "requirements": [
+    {
+      "id": "REQ-15",
+      "summary": "Add a new direct-auth React context with email/password signup/login/logout and localStorage session persistence validated by the backend token.",
+      "acceptanceCriteria": [
+        "Refreshing the page preserves the logged-in state when a valid session token is present in localStorage.",
+        "Logging out clears localStorage session data and updates the UI immediately.",
+        "Auth state is derived from validating the stored token against the backend (not from Internet Identity identity state).",
+        "No edits are made to immutable paths (including `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useActor.ts`, and `frontend/src/main.tsx`)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/contexts/DirectAuthContext.tsx",
+          "operation": "create",
+          "description": "Create a DirectAuthProvider + useDirectAuth() hook implementing: signup, login, logout, and boot-time session restore from localStorage. The provider should validate any stored session token against the backend and expose an `isAuthenticated` boolean, plus user display info for the UI."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wrap the routed application UI with DirectAuthProvider so auth state is available across all pages without modifying `frontend/src/main.tsx`."
+        },
+        {
+          "path": "frontend/src/backend.d.ts",
+          "operation": "modify",
+          "description": "Extend the backend TypeScript interface typings to include the new direct-auth backend capabilities required by the frontend (signup, login, validate session/current user, and logout/session invalidation as applicable)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "summary": "Update all auth UI and auth-dependent sections to use the new direct-auth context (remove Internet Identity redirects/copy) while preserving existing layout and styling.",
+      "acceptanceCriteria": [
+        "`LoginForm` submits email/password to the backend login endpoint; it no longer calls `useInternetIdentity().login()` and no longer shows “Redirecting to Internet Identity...”.",
+        "`SignupForm` submits name/email/password(/confirm) to the backend signup endpoint; it no longer calls `useInternetIdentity().login()` and no longer shows “Redirecting to Internet Identity...”.",
+        "`InlineSignupSection` performs direct signup (with validation) instead of calling Internet Identity login.",
+        "`AuthModal` no longer contains Internet Identity-specific copy/buttons; it provides direct access to login/signup (either embedded forms or navigation to `/auth`).",
+        "`SiteHeader`, `HeroSection`, `NewsSidebar`, and `RequireAnonymous` use the new direct-auth state to decide whether to show Login/Sign Up prompts vs user indicator + Logout.",
+        "All user-facing auth text is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/LoginForm.tsx",
+          "operation": "modify",
+          "description": "Replace Internet Identity login trigger with direct-auth context login using email/password; show success/error toasts in English and navigate as the current UX does, while keeping existing styling and structure intact."
+        },
+        {
+          "path": "frontend/src/components/auth/SignupForm.tsx",
+          "operation": "modify",
+          "description": "Replace Internet Identity trigger with direct-auth context signup; enforce basic validation (including password confirmation) and show success/error toasts in English while preserving form structure and styling."
+        },
+        {
+          "path": "frontend/src/components/home/InlineSignupSection.tsx",
+          "operation": "modify",
+          "description": "Switch inline signup from Internet Identity to direct-auth context signup; keep the section design intact, add/retain email/password confirmation validation, and hide the section based on direct-auth `isAuthenticated`."
+        },
+        {
+          "path": "frontend/src/components/auth/AuthModal.tsx",
+          "operation": "modify",
+          "description": "Remove Internet Identity-specific copy, buttons, and redirect messaging. Provide direct access to login/signup (preferably by embedding the existing LoginForm/SignupForm inside the modal with a local mode toggle) while keeping the current dialog styling."
+        },
+        {
+          "path": "frontend/src/components/auth/RequireAnonymous.tsx",
+          "operation": "modify",
+          "description": "Update RequireAnonymous to use the new direct-auth `isAuthenticated` state instead of Internet Identity identity state."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Update auth controls to use direct-auth context (display user indicator from direct-auth state; wire Logout to direct-auth logout). Keep existing header layout, navigation, and button styling intact; remove any useInternetIdentity().clear() usage."
+        },
+        {
+          "path": "frontend/src/components/home/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Update CTA behavior and button labels to depend on direct-auth `isAuthenticated` (no Internet Identity checks). Keep the hero section design and background image wiring unchanged."
+        },
+        {
+          "path": "frontend/src/components/news/NewsSidebar.tsx",
+          "operation": "modify",
+          "description": "Ensure the signup prompt gating uses the updated RequireAnonymous (direct-auth based). Keep sidebar content and layout unchanged; auth modal trigger remains but should open the updated direct-auth modal."
+        },
+        {
+          "path": "frontend/src/pages/AuthPage.tsx",
+          "operation": "modify",
+          "description": "Ensure the Auth page’s Login/Signup forms are fully backed by direct-auth context and contain no Internet Identity copy/flows; keep the overall page layout and styling intact."
+        },
+        {
+          "path": "frontend/src/lib/auth.ts",
+          "operation": "modify",
+          "description": "Adjust/extend auth-related helpers so non-Internet-Identity UI (e.g., header user indicator formatting) can display a human-friendly identifier from direct-auth state without depending on principals."
+        }
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "summary": "Ensure non-auth site behavior remains unchanged and no Internet Identity redirects occur anywhere in the UI.",
+      "acceptanceCriteria": [
+        "Home and News pages still load and render articles and images as before (no auth required to read news).",
+        "Newsletter signup continues to call the existing backend `subscribeNewsletter` endpoint and shows success/error feedback as before.",
+        "About Us and Privacy Policy pages remain available and unchanged in structure/copy.",
+        "No new redirects or Internet Identity flows occur anywhere in the app."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/auth/AuthModal.tsx",
+          "operation": "modify",
+          "description": "Verify the modal no longer initiates or references any Internet Identity flow and that it only presents direct login/signup UX (embedded forms or navigation), without affecting access to public content."
+        },
+        {
+          "path": "frontend/src/components/auth/LoginForm.tsx",
+          "operation": "modify",
+          "description": "Remove any remaining Internet Identity redirect messaging and ensure login uses only direct-auth backend token/session logic."
+        },
+        {
+          "path": "frontend/src/components/auth/SignupForm.tsx",
+          "operation": "modify",
+          "description": "Remove any remaining Internet Identity redirect messaging and ensure signup uses only direct-auth backend token/session logic."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Confirm article/news and newsletter query hooks remain unchanged in behavior (still using the existing actor calls) and are not gated by auth; make only minimal adjustments if needed to prevent accidental auth coupling."
+        }
+      ]
+    }
+  ]
+}

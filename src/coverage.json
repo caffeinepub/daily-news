@@ -1,0 +1,121 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T09:30:14.413Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-13",
+        "summary": "Implement direct email/password authentication in the Motoko backend by adding endpoints to (a) create an account, (b) log in, and (c) validate an existing session, without using Internet Identity.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-14",
+        "summary": "Add backend persistence for registered users and active sessions so that direct login/signup works across page reloads (and does not depend on Internet Identity).",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-15",
+        "summary": "Create a new frontend authentication context (separate from the existing Internet Identity hook) that supports: sign up, log in, log out, session persistence (localStorage), and an `isAuthenticated` boolean based on the backend session token.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/contexts/DirectAuthContext.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/backend.d.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/contexts/DirectAuthContext.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/backend.d.ts"
+        ]
+      },
+      {
+        "id": "REQ-16",
+        "summary": "Update all authentication UI to use direct email/password auth instead of triggering Internet Identity redirection, while keeping existing pages/sections and design styling intact.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/auth/LoginForm.tsx",
+          "frontend/src/components/auth/SignupForm.tsx",
+          "frontend/src/components/home/InlineSignupSection.tsx",
+          "frontend/src/components/auth/AuthModal.tsx",
+          "frontend/src/components/auth/RequireAnonymous.tsx",
+          "frontend/src/components/layout/SiteHeader.tsx",
+          "frontend/src/components/home/HeroSection.tsx",
+          "frontend/src/components/news/NewsSidebar.tsx",
+          "frontend/src/pages/AuthPage.tsx",
+          "frontend/src/lib/auth.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/auth/LoginForm.tsx",
+          "frontend/src/components/auth/SignupForm.tsx",
+          "frontend/src/components/home/InlineSignupSection.tsx",
+          "frontend/src/components/auth/AuthModal.tsx",
+          "frontend/src/components/auth/RequireAnonymous.tsx",
+          "frontend/src/components/layout/SiteHeader.tsx",
+          "frontend/src/components/home/HeroSection.tsx",
+          "frontend/src/components/news/NewsSidebar.tsx",
+          "frontend/src/lib/auth.ts"
+        ]
+      },
+      {
+        "id": "REQ-17",
+        "summary": "Preserve existing non-auth behavior: all pages (Home, News, About Us, Privacy Policy) and all news/article fetching and newsletter subscription functionality must continue to work as in Version 1.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/auth/AuthModal.tsx",
+          "frontend/src/components/auth/LoginForm.tsx",
+          "frontend/src/components/auth/SignupForm.tsx",
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/auth/AuthModal.tsx",
+          "frontend/src/components/auth/LoginForm.tsx",
+          "frontend/src/components/auth/SignupForm.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/authorization/MixinAuthorization.mo",
+    "backend/authorization/access-control.mo",
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/auth/AuthModal.tsx",
+    "frontend/src/components/auth/LoginForm.tsx",
+    "frontend/src/components/auth/RequireAnonymous.tsx",
+    "frontend/src/components/auth/SignupForm.tsx",
+    "frontend/src/components/home/HeroSection.tsx",
+    "frontend/src/components/home/InlineSignupSection.tsx",
+    "frontend/src/components/layout/SiteHeader.tsx",
+    "frontend/src/components/news/NewsSidebar.tsx",
+    "frontend/src/contexts/DirectAuthContext.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/lib/auth.ts",
+    "frontend/src/utils/urlParams.ts",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

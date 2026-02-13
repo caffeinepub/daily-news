@@ -1,0 +1,213 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a professional news website called \"Daily News\" for owner Meesam Abbas, including Home, News, About Us, Privacy Policy, and dedicated Login/Signup pages with highlighted authentication CTAs, newsletter subscription, and responsive design using a dark blue/white/gold theme. Authentication should be direct and simple (traditional email/password) without Internet Identity redirection; everything else remains unchanged.",
+  "architectural_notes": [
+    "Site pages: Home, News, About Us, Privacy Policy, Login/Signup (dedicated).",
+    "Primary nav: Home | News | About Us | Privacy Policy | Login/Signup; auth CTAs highlighted with gold accent.",
+    "Design system: Dark Blue #0B3D91, White #FFFFFF, Accent Gold #FFD700; headings Montserrat Bold, body Open Sans Regular.",
+    "UI/UX: Sticky header, prominent forms with subtle shadow/rounded corners, hover effects, responsive/mobile-first layout.",
+    "Content modules: Top Stories (3–5 items w/ images + summaries), Categories (Politics/Technology/Sports/Health/Entertainment), Featured News, optional sidebar (Popular Articles/Recent Comments).",
+    "Authentication: Use direct email/password signup/login (no Internet Identity redirection); keep existing UI/flows and site structure unchanged."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-the-site-wide-layout-with-a-sticky-header-and-footer-used-across-all-pages-header-must-show-the-text-logo-daily-news-and-navigation-links-home-news-about-us-privacy-policy-and-login-signup-the-login-and-signup-calls-to-action-must-be-visually-highlighted-with-a-gold-accent-and-include-hover-states",
+      "title": "Create the site-wide layout with a sticky header and footer used across all pages. Header must show the text logo “Daily News” and navigation links: Home, News, About Us, Privacy Policy, and Login / Signup. The Login and Signup calls-to-action must be visually highlighted with a gold accent and include hover states.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-global-design-system-to-match-the-provided-professional-look-color-palette-dark-blue-0b3d91-white-ffffff-accent-gold-ffd700-headings-styled-as-montserrat-bold-body-text-styled-as-open-sans-regular-grid-based-layout-responsive-mobile-first-behavior-and-consistent-button-input-styling-rounded-corners-subtle-shadows-on-cards-forms-where-applicable",
+      "title": "Implement the global design system to match the provided professional look: color palette Dark Blue (#0B3D91), White (#FFFFFF), Accent Gold (#FFD700); headings styled as Montserrat Bold; body text styled as Open Sans Regular; grid-based layout; responsive/mobile-first behavior; and consistent button/input styling (rounded corners, subtle shadows on cards/forms where applicable).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-home-page-with-the-following-sections-and-exact-user-facing-copy-hero-with-headline-stay-informed-stay-ahead-subheadline-sign-up-now-to-personalize-your-news-feed-and-get-instant-updates-and-two-cta-buttons-login-sign-up-include-an-optional-inline-new-user-signup-section-with-fields-name-email-password-confirm-password-and-a-link-to-login-include-top-stories-3-5-items-with-featured-images-short-summaries-and-read-more-buttons-include-categories-politics-technology-sports-health-entertainment-each-showing-2-3-featured-articles-include-newsletter-signup-section-with-copy-subscribe-for-instant-updates-with-email-input-subscribe-button",
+      "title": "Build the Home page with the following sections and exact user-facing copy: Hero with headline “Stay Informed, Stay Ahead”, subheadline “Sign up now to personalize your news feed and get instant updates.” and two CTA buttons (Login, Sign Up). Include an optional inline “New User Signup” section with fields Name, Email, Password, Confirm Password and a link to login. Include Top Stories (3–5 items) with featured images, short summaries, and “Read More” buttons. Include Categories (Politics, Technology, Sports, Health, Entertainment) each showing 2–3 featured articles. Include Newsletter Signup section with copy “Subscribe for instant updates” with email input + subscribe button.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-news-page-with-1-featured-news-section-highlighting-major-news-of-the-day-with-large-imagery-2-a-paginated-news-listing-where-each-article-shows-image-title-short-summary-and-a-read-more-action-and-3-an-optional-sidebar-containing-popular-articles-recent-comments-and-a-login-signup-shortcut-that-appears-only-when-the-user-is-not-authenticated",
+      "title": "Build the News page with: (1) Featured News section highlighting major news of the day with large imagery, (2) a paginated news listing where each article shows Image, Title, Short Summary, and a “Read More” action, and (3) an optional sidebar containing Popular Articles, Recent Comments, and a Login/Signup shortcut that appears only when the user is not authenticated.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-about-us-page-with-the-provided-english-copy-and-optional-sections-for-mission-vision-and-team-page-must-reuse-the-shared-header-footer-layout-and-include-the-title-about-daily-news-and-the-provided-paragraph-text-verbatim",
+      "title": "Build the About Us page with the provided English copy and optional sections for Mission & Vision and Team. Page must reuse the shared header/footer layout and include the title “About Daily News” and the provided paragraph text verbatim.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-the-privacy-policy-page-with-the-provided-english-copy-and-optional-subsections-for-cookies-data-protection-and-third-party-links-page-must-reuse-the-shared-header-footer-layout-and-include-the-title-privacy-policy-and-the-provided-paragraph-text-verbatim",
+      "title": "Build the Privacy Policy page with the provided English copy and optional subsections for Cookies, Data Protection, and Third-party Links. Page must reuse the shared header/footer layout and include the title “Privacy Policy” and the provided paragraph text verbatim.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-dedicated-login-signup-page-with-a-clean-minimalist-centered-layout-subtle-shadow-rounded-corners-and-gold-accent-primary-buttons-provide-a-login-form-email-password-login-button-forgot-password-link-and-a-signup-form-full-name-email-password-confirm-password-sign-up-button-and-already-have-an-account-login-here-text",
+      "title": "Create a dedicated Login / Signup page with a clean, minimalist, centered layout (subtle shadow, rounded corners) and gold-accent primary buttons. Provide a Login form (Email, Password, Login button, “Forgot Password?” link) and a Signup form (Full Name, Email, Password, Confirm Password, Sign Up button, and “Already have an account? Login here.” text).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-authentication-for-the-app-using-internet-identity-and-wire-the-ui-so-login-signup-ctas-trigger-internet-identity-sign-in-out-flows-when-authenticated-the-header-must-reflect-the-logged-in-state-e-g-show-a-user-indicator-and-a-logout-action-and-hide-unauthenticated-only-shortcuts-like-the-news-sidebar-login-signup-shortcut",
+      "title": "Implement authentication for the app using Internet Identity, and wire the UI so Login/Signup CTAs trigger Internet Identity sign-in/out flows. When authenticated, the header must reflect the logged-in state (e.g., show a user indicator and a Logout action) and hide unauthenticated-only shortcuts (like the News sidebar Login/Signup shortcut).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-optional-login-signup-modal-for-new-visitors-that-can-be-opened-from-the-header-ctas-and-optionally-auto-suggested-once-per-session-the-modal-must-be-responsive-match-the-site-design-system-and-provide-quick-access-to-the-same-sign-in-flow-used-by-the-dedicated-login-signup-page",
+      "title": "Add an optional Login/Signup modal for new visitors that can be opened from the header CTAs (and optionally auto-suggested once per session). The modal must be responsive, match the site design system, and provide quick access to the same sign-in flow used by the dedicated Login/Signup page.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-newsletter-subscription-flow-create-a-backend-endpoint-to-submit-an-email-address-for-newsletter-signup-and-persist-it-on-the-frontend-wire-the-home-page-newsletter-form-to-call-this-endpoint-with-validation-and-show-success-error-feedback",
+      "title": "Implement a newsletter subscription flow: create a backend endpoint to submit an email address for newsletter signup and persist it. On the frontend, wire the Home page newsletter form to call this endpoint with validation and show success/error feedback.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-static-image-assets-to-support-the-ui-a-large-hero-image-for-the-home-page-and-reusable-placeholder-images-for-news-article-cards-and-featured-news-store-generated-images-under-frontend-public-assets-generated-and-reference-them-directly-from-the-frontend",
+      "title": "Add static image assets to support the UI: a large hero image for the Home page and reusable placeholder images for news article cards and featured news. Store generated images under frontend/public/assets/generated and reference them directly from the frontend.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-frontend-authentication-context-separate-from-the-existing-internet-identity-hook-that-supports-sign-up-log-in-log-out-session-persistence-localstorage-and-an-isauthenticated-boolean-based-on-the-backend-session-token",
+      "title": "Create a new frontend authentication context (separate from the existing Internet Identity hook) that supports: sign up, log in, log out, session persistence (localStorage), and an `isAuthenticated` boolean based on the backend session token.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-authentication-ui-to-use-direct-email-password-auth-instead-of-triggering-internet-identity-redirection-while-keeping-existing-pages-sections-and-design-styling-intact",
+      "title": "Update all authentication UI to use direct email/password auth instead of triggering Internet Identity redirection, while keeping existing pages/sections and design styling intact.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-existing-non-auth-behavior-all-pages-home-news-about-us-privacy-policy-and-all-news-article-fetching-and-newsletter-subscription-functionality-must-continue-to-work-as-in-version-1",
+      "title": "Preserve existing non-auth behavior: all pages (Home, News, About Us, Privacy Policy) and all news/article fetching and newsletter subscription functionality must continue to work as in Version 1.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create Home page with header/nav, hero CTAs (Login/Sign Up), optional inline signup form, top stories, categories, newsletter signup, and footer",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create News page with article listing (image/title/summary/read more), pagination, featured news section, and optional sidebar (popular articles, recent comments, login/signup shortcut)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create About Us page with provided copy and optional mission/vision and team section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create Privacy Policy page with provided policy text and optional cookies/data protection/third-party links sections",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create dedicated Login/Signup page with login form, signup form, forgot password link, and gold-accent responsive design",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement authentication UI flows across site: highlighted Login/Signup buttons, sticky header visibility, optional login/signup modal for new visitors",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement newsletter email subscription form/flow",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Apply global design system: dark blue/white/gold palette, Montserrat headings, Open Sans body, grid-based layout, hover effects, responsive/mobile-first",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Implement backend data models and APIs to serve news content used by the Home and News pages, including: articles with id, title, summary, category, image reference, featured flag, and created timestamp. Provide query endpoints to fetch: latest top stories, featured news, articles by category, and paginated article listings. Seed the app with sample data sufficient to populate all required sections (Top Stories 3–5; categories 2–3 each).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Replace Internet Identity authentication with direct, simple email/password signup & login (no identity redirection) while keeping all existing pages/sections unchanged",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Implement direct email/password authentication in the Motoko backend by adding endpoints to (a) create an account, (b) log in, and (c) validate an existing session, without using Internet Identity.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Add backend persistence for registered users and active sessions so that direct login/signup works across page reloads (and does not depend on Internet Identity).",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Daily News",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

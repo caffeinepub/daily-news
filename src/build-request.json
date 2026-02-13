@@ -1,0 +1,129 @@
+{
+  "kind": "build_request",
+  "title": "Replace Internet Identity with direct email/password signup & login (keep all other pages unchanged)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-13",
+      "text": "Implement direct email/password authentication in the Motoko backend by adding endpoints to (a) create an account, (b) log in, and (c) validate an existing session, without using Internet Identity.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Keep everything else as it is, just make the signup/login direct without Internet Identity."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes a signup endpoint that accepts (at minimum) full name, email, and password and returns a success/error result.",
+        "Backend exposes a login endpoint that accepts email and password and returns a success/error result plus a session token on success.",
+        "Backend exposes an endpoint to fetch/validate the current user from a session token (or returns an unauthenticated result).",
+        "Passwords are not stored in plaintext (store a derived value).",
+        "No existing article/news/newsletter query endpoints are removed or changed in a breaking way."
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "text": "Add backend persistence for registered users and active sessions so that direct login/signup works across page reloads (and does not depend on Internet Identity).",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "make the signup/login direct without Internet Identity redirection"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User records (email + profile fields + password-derived value) are persisted in canister state.",
+        "Session tokens (or equivalent session mechanism) are persisted in canister state and can be validated by the backend.",
+        "Attempting to sign up with an already-registered email returns a clear error result.",
+        "Logging in with an invalid email/password returns a clear error result."
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "text": "Create a new frontend authentication context (separate from the existing Internet Identity hook) that supports: sign up, log in, log out, session persistence (localStorage), and an `isAuthenticated` boolean based on the backend session token.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "just make the signup/login direct without Internet Identity"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Refreshing the page preserves the logged-in state when a valid session token is present in localStorage.",
+        "Logging out clears localStorage session data and updates the UI immediately.",
+        "Auth state is derived from validating the stored token against the backend (not from Internet Identity identity state).",
+        "No edits are made to immutable paths (including `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useActor.ts`, and `frontend/src/main.tsx`)."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Update all authentication UI to use direct email/password auth instead of triggering Internet Identity redirection, while keeping existing pages/sections and design styling intact.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Keep everything else as it is, just make the signup/login direct without Internet Identity."
+        ]
+      },
+      "acceptanceCriteria": [
+        "`LoginForm` submits email/password to the backend login endpoint; it no longer calls `useInternetIdentity().login()` and no longer shows “Redirecting to Internet Identity...”.",
+        "`SignupForm` submits name/email/password(/confirm) to the backend signup endpoint; it no longer calls `useInternetIdentity().login()` and no longer shows “Redirecting to Internet Identity...”.",
+        "`InlineSignupSection` performs direct signup (with validation) instead of calling Internet Identity login.",
+        "`AuthModal` no longer contains Internet Identity-specific copy/buttons; it provides direct access to login/signup (either embedded forms or navigation to `/auth`).",
+        "`SiteHeader`, `HeroSection`, `NewsSidebar`, and `RequireAnonymous` use the new direct-auth state to decide whether to show Login/Sign Up prompts vs user indicator + Logout.",
+        "All user-facing auth text is in English."
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "text": "Preserve existing non-auth behavior: all pages (Home, News, About Us, Privacy Policy) and all news/article fetching and newsletter subscription functionality must continue to work as in Version 1.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "I don’t want to remove anything else. I just want the signup and login to be direct and simple... All other pages and sections should remain as they are, and the news pages should continue to display normally."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home and News pages still load and render articles and images as before (no auth required to read news).",
+        "Newsletter signup continues to call the existing backend `subscribeNewsletter` endpoint and shows success/error feedback as before.",
+        "About Us and Privacy Policy pages remain available and unchanged in structure/copy.",
+        "No new redirects or Internet Identity flows occur anywhere in the app."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor in `backend/main.mo` (no additional backend services).",
+    "Do not edit frontend immutable paths: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and anything under `frontend/src/components/ui`.",
+    "Keep all existing pages and sections; do not remove Home, News, About Us, Privacy Policy, newsletter, categories, or sidebars."
+  ],
+  "nonGoals": [
+    "Implementing third-party authentication providers (only direct email/password auth is required).",
+    "Adding real-time features (e.g., websockets, live chat).",
+    "Changing the news/article content model or redesigning the site theme beyond what is necessary to remove Internet Identity references."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

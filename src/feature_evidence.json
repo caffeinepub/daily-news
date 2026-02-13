@@ -1,0 +1,73 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-new-frontend-authentication-context-separate-from-the-existing-internet-identity-hook-that-supports-sign-up-log-in-log-out-session-persistence-localstorage-and-an-isauthenticated-boolean-based-on-the-backend-session-token",
+      "featureTitle": "Create a new frontend authentication context (separate from the existing Internet Identity hook) that supports: sign up, log in, log out, session persistence (localStorage), and an `isAuthenticated` boolean based on the backend session token.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/contexts/DirectAuthContext.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-all-authentication-ui-to-use-direct-email-password-auth-instead-of-triggering-internet-identity-redirection-while-keeping-existing-pages-sections-and-design-styling-intact",
+      "featureTitle": "Update all authentication UI to use direct email/password auth instead of triggering Internet Identity redirection, while keeping existing pages/sections and design styling intact.",
+      "files": [
+        "frontend/src/components/auth/AuthModal.tsx",
+        "frontend/src/components/auth/LoginForm.tsx",
+        "frontend/src/components/auth/RequireAnonymous.tsx",
+        "frontend/src/components/auth/SignupForm.tsx",
+        "frontend/src/components/home/HeroSection.tsx",
+        "frontend/src/components/home/InlineSignupSection.tsx",
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/components/news/NewsSidebar.tsx",
+        "frontend/src/lib/auth.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-preserve-existing-non-auth-behavior-all-pages-home-news-about-us-privacy-policy-and-all-news-article-fetching-and-newsletter-subscription-functionality-must-continue-to-work-as-in-version-1",
+      "featureTitle": "Preserve existing non-auth behavior: all pages (Home, News, About Us, Privacy Policy) and all news/article fetching and newsletter subscription functionality must continue to work as in Version 1.",
+      "files": [
+        "frontend/src/components/auth/AuthModal.tsx",
+        "frontend/src/components/auth/LoginForm.tsx",
+        "frontend/src/components/auth/SignupForm.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-17"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
